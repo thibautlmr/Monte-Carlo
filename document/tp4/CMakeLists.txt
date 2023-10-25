@@ -27,9 +27,9 @@ if(${CMAKE_BUILD_TYPE} STREQUAL "Release")
 endif()
 
 # Testing the parser
-add_executable(pricebscall MonteCarlo.cpp main.cpp BSCall.cpp)
-target_link_libraries(pricebscall ${LIBS})
-pnl_add_postbuild(pricebscall)
+add_executable(asianprice MonteCarlo.cpp main.cpp AsianCall.cpp)
+target_link_libraries(asianprice ${LIBS})
+pnl_add_postbuild(asianprice)
 
 
 # Print compiler flags

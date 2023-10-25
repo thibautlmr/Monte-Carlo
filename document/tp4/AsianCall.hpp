@@ -1,5 +1,6 @@
 // vim: set sw=4 ts=4 sts=4:
 #include "pnl/pnl_random.h"
+#include "pnl/pnl_cdf.h"
 #pragma once
 
 class AsianCall
@@ -21,4 +22,10 @@ public:
     double payoff();
 
     double trapezoid();
+
+    double logTrapezoid();
+
+    double variableControleY();
+
+    double variableControleZ();
 };

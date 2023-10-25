@@ -8,7 +8,7 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/document/tp2-1/build/pricebscall",
+            "program": "${workspaceFolder}/document/tp4/build/asianprice",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",

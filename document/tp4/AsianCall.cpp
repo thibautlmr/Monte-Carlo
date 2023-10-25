@@ -27,13 +27,40 @@ void AsianCall::asset(PnlRng *rng)
 
 double AsianCall::payoff()
 {
-    return std::max(pnl_vect_sum(m_underlyingTrajectory) / (m_nbTimeSteps + 1) - m_strike, 0.);
+    return std::exp(-m_maturity * m_interest_rate) * std::max(trapezoid() - m_strike, 0.);
 }
 
 double AsianCall::trapezoid()
 {
-    for (int i = 0; i < m_underlyingTrajectory->size; i++)
+    double res = 0.;
+    for (int i = 0; i < m_underlyingTrajectory->size - 1; i++)
     {
-        pnl_vect_set(m_underlyingTrajectory, i, pnl_vect_get(m_underlyingTrajectory, i) * pnl_vect_get(m_underlyingTrajectory, i));
+        res += m_maturity / (m_underlyingTrajectory->size - 1) * (pnl_vect_get(m_underlyingTrajectory, i) + pnl_vect_get(m_underlyingTrajectory, i + 1)) / 2;
     }
+    return 1 / m_maturity * res;
+}
+
+double AsianCall::logTrapezoid()
+{
+    double res = 0.;
+    for (int i = 0; i < m_underlyingTrajectory->size - 1; i++)
+    {
+        res += m_maturity / (m_underlyingTrajectory->size - 1) * (std::log(pnl_vect_get(m_underlyingTrajectory, i)) + std::log(pnl_vect_get(m_underlyingTrajectory, i + 1))) / 2;
+    }
+    return 1 / m_maturity * res;
+}
+
+double AsianCall::variableControleY()
+{
+    double Y = std::exp(logTrapezoid());
+    double expectedY = pnl_vect_get(m_underlyingTrajectory, 0) * std::exp(m_interest_rate * m_maturity / 2 - m_volatility * m_volatility * m_maturity / 12);
+    return Y - expectedY;
+}
+
+double AsianCall::variableControleZ()
+{
+    double Z = std::exp(-m_interest_rate * m_maturity) * std::max(std::exp(logTrapezoid()) - m_strike, 0.);
+    double d = 1 / m_volatility * sqrt(3 / m_maturity) * (std::log(m_strike / pnl_vect_get(m_underlyingTrajectory, 0)) - (m_interest_rate - m_volatility * m_volatility / 2) * m_maturity / 2);
+    double expectedZ = std::exp(-m_interest_rate * m_maturity) * (-m_strike * pnl_cdfnor(-d) + pnl_vect_get(m_underlyingTrajectory, 0) * std::exp((m_interest_rate - m_volatility * m_volatility / 6) * m_maturity / 2) * pnl_cdfnor(-d + m_volatility * sqrt(m_maturity / 3)));
+    return Z - expectedZ;
 }
