@@ -22,8 +22,6 @@ double MonteCarlo::expectedValue()
         }
         else
         {
-            std::cout << i << std::endl;
-
             sum += brownian_->getTauABrownianBridge(a_);
         }
     }

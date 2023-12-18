@@ -1,0 +1,3 @@
+/home/thibaut/s9/monte-carlo/monte-carlo-main/document/tp6/build/CMakeFiles/strong-error.dir
+/home/thibaut/s9/monte-carlo/monte-carlo-main/document/tp6/build/CMakeFiles/edit_cache.dir
+/home/thibaut/s9/monte-carlo/monte-carlo-main/document/tp6/build/CMakeFiles/rebuild_cache.dir

@@ -12,9 +12,6 @@ int main()
     MonteCarlo pricer(product, 50000);
     PnlRng *rng = pnl_rng_create(PNL_RNG_MERSENNE);
     pnl_rng_sseed(rng, std::time(NULL));
-    // product.asset(rng);
-    // pnl_vect_print(product.m_underlyingTrajectory);
-    // std::cout << "payoff : " << product.payoff() << "\n";
     pricer.mc(prix, stddev, rng);
     std::cout << "prix : " << prix << " (IC = " << stddev * 1.96 << ")\n";
     std::cout << "stdDev : " << stddev << "\n";

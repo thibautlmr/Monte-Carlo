@@ -8,7 +8,7 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/document/tp4/build/asianprice",
+            "program": "${workspaceFolder}/document/tp6/build/strong-error",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",

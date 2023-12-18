@@ -28,6 +28,7 @@ int main()
             std::cout << "Expected value by Monte-Carlo Simulation : (T=" << maturity[T] << "; N=" << N[n] << ") : " << expec << std::endl;
             std::cout << "Bias (T=" << maturity[T] << "; N=" << N[n] << ") : " << bias << std::endl;
             std::cout << "Bias in N^(1/2) (T=" << maturity[T] << "; N=" << N[n] << ") : " << proporBias << std::endl;
+            std::cout << std::endl;
         }
     }
     return 0;

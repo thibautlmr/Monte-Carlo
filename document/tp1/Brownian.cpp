@@ -40,7 +40,7 @@ double Brownian::getTauA(double a)
 
 double Brownian::getTauABrownianBridge(double a)
 {
-    brownianBridge((int)(getTauA(a) * N_ / maturity_), (int)(getTauA(a) * N_ / maturity_ + 1));
+    brownianBridge((int)(getTauA(a) * N_ / maturity_), (int)(getTauA(a) * N_ / maturity_) + 1);
     if (a > 0)
     {
         for (int t = 1; t < brownian_->size; t++)
